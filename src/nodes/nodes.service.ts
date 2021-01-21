@@ -15,11 +15,17 @@ export class NodesService {
     return await this.nodeModel.findOne({ _id: id });
   }
 
-  async create(node: Node): Promise<Node> {
+  async create(node: Node,nodeid:string): Promise<Node> {
     
     const newNode = new this.nodeModel(node);
-    return await newNode.save(); 
+     await newNode.save(); 
+     return await this.nodeModel.find(nodeid)
   }
+
+   async filterNode(nodeid: string): Promise<Node> {
+    
+     return await this.nodeModel.find({nodeid}); 
+   }
 
   async delete(id: string): Promise<Node> {
     return await this.nodeModel.findByIdAndRemove(id);
