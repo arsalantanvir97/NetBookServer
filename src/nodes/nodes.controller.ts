@@ -27,7 +27,7 @@ import {
   
     @Post()
     create(@Body() createNodeDto: CreateNodeDto): Promise<Node> {
-      return this.nodesService.create(createNodeDto,createNodeDto.nodeid);
+      return this.nodesService.create(createNodeDto)
     }
      @Post('/get')
      filterNode(@Body() createNodeDto: CreateNodeDto): Promise<Node> {
