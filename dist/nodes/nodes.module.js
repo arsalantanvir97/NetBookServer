@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const edge_schema_1 = require("src/edges/schemas/edge.schema");
+const edge_schema_1 = require("../edges/schemas/edge.schema");
 const nodes_controller_1 = require("./nodes.controller");
 const nodes_service_1 = require("./nodes.service");
 const node_schema_1 = require("./schemas/node.schema");

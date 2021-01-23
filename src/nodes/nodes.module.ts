@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { EdgeSchema } from 'src/edges/schemas/edge.schema';
+import { EdgeSchema } from '../edges/schemas/edge.schema';
 import { NodesController } from './nodes.controller';
 import { NodesService } from './nodes.service'
 import { NodeSchema } from './schemas/node.schema'
@@ -10,4 +10,4 @@ import { NodeSchema } from './schemas/node.schema'
   controllers: [NodesController],
   providers: [NodesService],
 })
-export class NodesModule {}
+export class NodesModule { }
