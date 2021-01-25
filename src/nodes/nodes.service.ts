@@ -19,11 +19,14 @@ export class NodesService {
     return await this.nodeModel.findOne({ _id: id });
   }
 
-  async create(node: Node): Promise<Node> {
-    
+  async create(node: Node,id:string): Promise<any> {
+    const checknode=await this.nodeModel.findOne({id})
+    if(checknode){
+      return {message:'Node Already exists'}
+    }else{
     const newNode = new this.nodeModel(node);
      return await newNode.save(); 
-     
+    }
   }
 
    async filterNode(nodeid: string): Promise<any> {
