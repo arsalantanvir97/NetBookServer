@@ -31,7 +31,7 @@ export class NodesService {
 
    async filterNode(nodeid: string): Promise<any> {
     let nodes =  await this.nodeModel.find({nodeid}); 
-    let links =  await this.edgeModel.find({edgeid: nodeid}); 
+    let links =  await this.edgeModel.find({edgeid: nodeid}).populate('source').populate('target'); 
     return {nodes, links}
    }
 
