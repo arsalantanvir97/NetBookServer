@@ -36,10 +36,14 @@ export class NodesService {
    }
 
   async delete(id: string): Promise<Node> {
+    await this.edgeModel.findOne({source: id}).remove().exec()
+    await this.edgeModel.findOne({target: id}).remove().exec()
     return await this.nodeModel.findByIdAndRemove(id);
   }
 
+
   async update(id: string, node: Node): Promise<Node> {
+    
     return await this.nodeModel.findByIdAndUpdate(id, node, { new: true });
   }
 }
