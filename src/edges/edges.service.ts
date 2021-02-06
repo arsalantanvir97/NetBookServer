@@ -18,7 +18,8 @@ export class EdgesService {
   async create(edge: Edge): Promise<Edge> {
     
     const newEdge = new this.edgeModel(edge);
-     return await newEdge.save(); 
+     const newerEdge= await newEdge.save(); 
+    return await this.edgeModel.findById(newerEdge._id).populate('source').populate('target'); 
      
   }
 
@@ -32,6 +33,7 @@ export class EdgesService {
   }
 
   async update(id: string, edge: Edge): Promise<Edge> {
-    return await this.edgeModel.findByIdAndUpdate(id, edge, { new: true });
+    return await this.edgeModel.findByIdAndUpdate(id, edge, { new: true }).populate('source').populate('target'); 
+     
   }
 }
