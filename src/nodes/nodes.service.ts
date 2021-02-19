@@ -36,8 +36,8 @@ export class NodesService {
    }
 
   async delete(id: string): Promise<Node> {
-    await this.edgeModel.findOne({source: id}).remove().exec()
-    await this.edgeModel.findOne({target: id}).remove().exec()
+    await this.edgeModel.find({source: id}).remove().exec()
+    await this.edgeModel.find({target: id}).remove().exec()
     return await this.nodeModel.findByIdAndRemove(id);
   }
 
