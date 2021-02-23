@@ -7,5 +7,5 @@ export interface Item {
   expires_at:number;
   AIQueries:number;
   query:string;
- package:string
+ packageid:string
 }

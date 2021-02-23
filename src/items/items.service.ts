@@ -36,7 +36,7 @@ export class ItemsService {
     return await this.itemModel.findByIdAndUpdate(id, item, { new: true });
   }
   async queries(id:string,query:string,res:any){
-const user=await this.itemModel.findOne({_id:id}).populate('package')
+const user=await this.itemModel.findOne({_id:id}).populate('packageid')
 if(user){
 console.log('user',user)
 let userqueries=await user.AIQueries+1

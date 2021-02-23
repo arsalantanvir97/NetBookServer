@@ -10,7 +10,7 @@ export const ItemSchema = new mongoose.Schema({
   AIQueries:{type:Number,
     default:0},
   query:String,
-  package:{
+  packageid:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'Package'
   },
