@@ -5,12 +5,13 @@ import {
   Put,
   Delete,
   Body,
+Res,
   Param,
 } from '@nestjs/common';
 import { CreateItemDto } from './dto/create-item.dto';
 import { ItemsService } from './items.service';
 import { Item } from './interfaces/item.interface';
-
+import {Request,Response}from 'express'
 @Controller('items')
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
@@ -38,5 +39,9 @@ export class ItemsController {
   @Put(':id')
   update(@Body() updateItemDto: CreateItemDto, @Param('id') id): Promise<Item> {
     return this.itemsService.update(id, updateItemDto);
+  }
+  @Post(':id')
+  queries(@Body() createItemDto: CreateItemDto, @Param('id') id,@Res() res:Response) {
+    return this.itemsService.queries(id,createItemDto.query,res);
   }
 }
