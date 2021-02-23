@@ -7,5 +7,5 @@ export class CreateItemDto {
   expires_at:number;
   AIQueries:number;
   query:string
-  packageid:string
+  package:string
 }
