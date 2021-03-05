@@ -39,21 +39,29 @@ let NodesService = class NodesService {
             return yield this.nodeModel.findOne({ _id: id });
         });
     }
-    create(node) {
+    create(node, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const newNode = new this.nodeModel(node);
-            return yield newNode.save();
+            const checknode = yield this.nodeModel.findOne({ id });
+            if (checknode) {
+                return { message: 'Node Already exists' };
+            }
+            else {
+                const newNode = new this.nodeModel(node);
+                return yield newNode.save();
+            }
         });
     }
     filterNode(nodeid) {
         return __awaiter(this, void 0, void 0, function* () {
             let nodes = yield this.nodeModel.find({ nodeid });
-            let links = yield this.edgeModel.find({ edgeid: nodeid });
+            let links = yield this.edgeModel.find({ edgeid: nodeid }).populate('source').populate('target');
             return { nodes, links };
         });
     }
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
+            yield this.edgeModel.find({ source: id }).remove().exec();
+            yield this.edgeModel.find({ target: id }).remove().exec();
             return yield this.nodeModel.findByIdAndRemove(id);
         });
     }

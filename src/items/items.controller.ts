@@ -28,6 +28,7 @@ export class ItemsController {
 
   @Post()
   create(@Body() createItemDto: CreateItemDto): Promise<Item> {
+    console.log("logging user in")
     return this.itemsService.create(createItemDto,createItemDto.email);
   }
 

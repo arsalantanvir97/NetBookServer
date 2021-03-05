@@ -41,7 +41,8 @@ let EdgesService = class EdgesService {
     create(edge) {
         return __awaiter(this, void 0, void 0, function* () {
             const newEdge = new this.edgeModel(edge);
-            return yield newEdge.save();
+            const newerEdge = yield newEdge.save();
+            return yield this.edgeModel.findById(newerEdge._id).populate('source').populate('target');
         });
     }
     filterEdge(edgeid) {
@@ -56,7 +57,7 @@ let EdgesService = class EdgesService {
     }
     update(id, edge) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.edgeModel.findByIdAndUpdate(id, edge, { new: true });
+            return yield this.edgeModel.findByIdAndUpdate(id, edge, { new: true }).populate('source').populate('target');
         });
     }
 };

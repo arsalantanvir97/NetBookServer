@@ -26,6 +26,7 @@ let ItemsController = class ItemsController {
         return this.itemsService.findOne(id);
     }
     create(createItemDto) {
+        console.log("logging user in");
         return this.itemsService.create(createItemDto, createItemDto.email);
     }
     delete(id) {
@@ -33,6 +34,9 @@ let ItemsController = class ItemsController {
     }
     update(updateItemDto, id) {
         return this.itemsService.update(id, updateItemDto);
+    }
+    queries(createItemDto, id, res) {
+        return this.itemsService.queries(id, createItemDto.query, res);
     }
 };
 __decorate([
@@ -69,6 +73,13 @@ __decorate([
     __metadata("design:paramtypes", [create_item_dto_1.CreateItemDto, Object]),
     __metadata("design:returntype", Promise)
 ], ItemsController.prototype, "update", null);
+__decorate([
+    common_1.Post(':id'),
+    __param(0, common_1.Body()), __param(1, common_1.Param('id')), __param(2, common_1.Res()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_item_dto_1.CreateItemDto, Object, Object]),
+    __metadata("design:returntype", void 0)
+], ItemsController.prototype, "queries", null);
 ItemsController = __decorate([
     common_1.Controller('items'),
     __metadata("design:paramtypes", [items_service_1.ItemsService])

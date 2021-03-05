@@ -17,15 +17,17 @@ export class ItemsService {
   }
 
   async create(item: Item,email:string): Promise<Item> {
-    const checkitem=await this.itemModel.findOne({email})
+    const checkitem=await this.itemModel.findOne({email}).populate('packageid')
 
     if(checkitem){
       return checkitem
     }else{
     const newItem = new this.itemModel(item);
-    
-
-    return await newItem.save(); }
+    await newItem.save(); 
+    const updateduser=await this.itemModel.findById(newItem._id).populate('packageid')
+    console.log('pop',updateduser)
+    return updateduser
+    }
   }
 
   async delete(id: string): Promise<Item> {
@@ -39,13 +41,22 @@ export class ItemsService {
 const user=await this.itemModel.findOne({_id:id}).populate('packageid')
 if(user){
 console.log('user',user)
-let userqueries=await user.AIQueries+1
-console.log('userqueries',userqueries)
-user.AIQueries=userqueries
-let userupdated=  await user.save();
-res.json({message:'You have succesfully made a query regarding AI'})}
 
-console.log('userq',user.AIQueries)
+  if(user.AIQueries<user.packageid.AIQueries){
+    let userqueries=await user.AIQueries+1
+    console.log('userqueries',userqueries)
+    user.AIQueries=userqueries
+    let userupdated=  await user.save();
+    res.json({userupdated, message:'You have succesfully asked your API query  '})
+  }
+    else{
+      res.json({message:'You have reached the limit of AI Queries please upgrade to basic or premium package '})}
+
+    
+    
+  }
+  console.log('userq',user.AIQueries)
+}
 
 // return await user.findByIdAndUpdate(id,{AIQueries:userqueries},{new:true})
   // await this.itemModel.query.save(query)
@@ -53,4 +64,4 @@ console.log('userq',user.AIQueries)
   // await this.itemModel.AIQueries.save(countquery)
   // const aiqueriescount=this.itemModel.AIQueries
   // return await aiqueriescount
-}}
+}

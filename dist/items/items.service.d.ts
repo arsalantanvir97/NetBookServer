@@ -8,4 +8,5 @@ export declare class ItemsService {
     create(item: Item, email: string): Promise<Item>;
     delete(id: string): Promise<Item>;
     update(id: string, item: Item): Promise<Item>;
+    queries(id: string, query: string, res: any): Promise<void>;
 }

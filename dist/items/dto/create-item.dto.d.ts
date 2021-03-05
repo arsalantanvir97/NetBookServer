@@ -5,4 +5,7 @@ export declare class CreateItemDto {
     access_token: string;
     expires_in: number;
     expires_at: number;
+    AIQueries: number;
+    query: string;
+    packageid: string;
 }

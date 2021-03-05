@@ -12,11 +12,12 @@ const edge_schema_1 = require("../edges/schemas/edge.schema");
 const nodes_controller_1 = require("./nodes.controller");
 const nodes_service_1 = require("./nodes.service");
 const node_schema_1 = require("./schemas/node.schema");
+const item_schema_1 = require("../items/schemas/item.schema");
 let NodesModule = class NodesModule {
 };
 NodesModule = __decorate([
     common_1.Module({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Node', schema: node_schema_1.NodeSchema }]), mongoose_1.MongooseModule.forFeature([{ name: 'Edge', schema: edge_schema_1.EdgeSchema }])],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Node', schema: node_schema_1.NodeSchema }]), mongoose_1.MongooseModule.forFeature([{ name: 'Edge', schema: edge_schema_1.EdgeSchema }]), mongoose_1.MongooseModule.forFeature([{ name: 'Item', schema: item_schema_1.ItemSchema }])],
         controllers: [nodes_controller_1.NodesController],
         providers: [nodes_service_1.NodesService],
     })

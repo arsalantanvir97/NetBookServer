@@ -9,13 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const edges_controller_1 = require("./edges.controller");
+const node_schema_1 = require("../nodes/schemas/node.schema");
 const edges_service_1 = require("./edges.service");
 const edge_schema_1 = require("./schemas/edge.schema");
+const item_schema_1 = require("../items/schemas/item.schema");
 let EdgesModule = class EdgesModule {
 };
 EdgesModule = __decorate([
     common_1.Module({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Edge', schema: edge_schema_1.EdgeSchema }])],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Edge', schema: edge_schema_1.EdgeSchema }]), mongoose_1.MongooseModule.forFeature([{ name: 'Node', schema: node_schema_1.NodeSchema }]), mongoose_1.MongooseModule.forFeature([{ name: 'Item', schema: item_schema_1.ItemSchema }])],
         controllers: [edges_controller_1.EdgesController],
         providers: [edges_service_1.EdgesService],
     })

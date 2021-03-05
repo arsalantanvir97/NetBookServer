@@ -40,13 +40,16 @@ let ItemsService = class ItemsService {
     }
     create(item, email) {
         return __awaiter(this, void 0, void 0, function* () {
-            const checkitem = yield this.itemModel.findOne({ email });
+            const checkitem = yield this.itemModel.findOne({ email }).populate('packageid');
             if (checkitem) {
                 return checkitem;
             }
             else {
                 const newItem = new this.itemModel(item);
-                return yield newItem.save();
+                yield newItem.save();
+                const updateduser = yield this.itemModel.findById(newItem._id).populate('packageid');
+                console.log('pop', updateduser);
+                return updateduser;
             }
         });
     }
@@ -58,6 +61,25 @@ let ItemsService = class ItemsService {
     update(id, item) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.itemModel.findByIdAndUpdate(id, item, { new: true });
+        });
+    }
+    queries(id, query, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.itemModel.findOne({ _id: id }).populate('packageid');
+            if (user) {
+                console.log('user', user);
+                if (user.AIQueries < user.packageid.AIQueries) {
+                    let userqueries = (yield user.AIQueries) + 1;
+                    console.log('userqueries', userqueries);
+                    user.AIQueries = userqueries;
+                    let userupdated = yield user.save();
+                    res.json({ userupdated, message: 'You have succesfully asked your API query  ' });
+                }
+                else {
+                    res.json({ message: 'You have reached the limit of AI Queries please upgrade to basic or premium package ' });
+                }
+            }
+            console.log('userq', user.AIQueries);
         });
     }
 };

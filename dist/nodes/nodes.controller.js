@@ -26,7 +26,7 @@ let NodesController = class NodesController {
         return this.nodesService.findOne(id);
     }
     create(createNodeDto) {
-        return this.nodesService.create(createNodeDto);
+        return this.nodesService.create(createNodeDto, createNodeDto.id);
     }
     filterNode(createNodeDto) {
         return this.nodesService.filterNode(createNodeDto.nodeid);
