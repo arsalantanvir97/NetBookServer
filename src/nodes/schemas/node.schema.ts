@@ -9,4 +9,6 @@ export const NodeSchema = new mongoose.Schema({
   type:String,
   tags:Array,
   attributes:Array
+}, {
+  timestamps: true,
 });

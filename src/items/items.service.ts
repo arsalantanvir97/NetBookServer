@@ -33,6 +33,17 @@ export class ItemsService {
   async delete(id: string): Promise<Item> {
     return await this.itemModel.findByIdAndRemove(id);
   }
+  async updates(packageid: string,id: string): Promise<Item> {
+    const user=await this.itemModel.findOne({_id:id})
+    console.log('users',user)
+    if(user){
+user.packageid=packageid}
+await user.save()
+const newwuser=await this.itemModel.findById(user._id).populate('packageid')
+console.log('pops',newwuser)
+return await newwuser.save()
+  }
+
 
   async update(id: string, item: Item): Promise<Item> {
     return await this.itemModel.findByIdAndUpdate(id, item, { new: true });

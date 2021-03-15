@@ -14,4 +14,5 @@ export const ItemSchema = new mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:'Package'
   },
-});
+}
+);
