@@ -8,7 +8,8 @@ export const NodeSchema = new mongoose.Schema({
   id:String,
   type:String,
   tags:Array,
-  attributes:Array
+  attributes:Array,
+  color:String,
 }, {
   timestamps: true,
 });
