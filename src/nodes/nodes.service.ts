@@ -30,9 +30,27 @@ export class NodesService {
     }
   }
   async creates(node: Node): Promise<any> {
-    console.log("body", node)
-    const nodes = await this.nodeModel.insertMany(node)
-    console.log('nodes', nodes)
+    let nodes;
+    try {
+      // console.log("body", node)
+      nodes = await this.nodeModel.insertMany(node, { ordered: false })
+      // console.log('nodes', nodes)
+
+    }
+    catch (error) {
+      if (error.message.indexOf("11000") != -1) {
+        // run some code here //
+        console.log("dup error")
+        console.log('nodee', nodes)
+        return nodes
+
+      }
+    }
+    finally {
+      console.log('noddde', nodes)
+      return nodes
+
+    }
 
   }
   async filterNode(nodeid: string): Promise<any> {

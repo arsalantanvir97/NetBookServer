@@ -7,7 +7,7 @@ export const NodeSchema = new mongoose.Schema({
   },
   id: {
     type: String,
-    dropDups: true
+    unique: true,
   }
   ,
   type: String,
