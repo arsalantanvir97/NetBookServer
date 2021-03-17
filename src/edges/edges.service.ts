@@ -5,7 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class EdgesService {
-  constructor(@InjectModel('Edge') private readonly edgeModel: Model<Edge>) {}
+  constructor(@InjectModel('Edge') private readonly edgeModel: Model<Edge>) { }
 
   async findAll(): Promise<Edge[]> {
     return await this.edgeModel.find();
@@ -16,29 +16,30 @@ export class EdgesService {
   }
 
   async create(edge: Edge): Promise<Edge> {
-    
+
     const newEdge = new this.edgeModel(edge);
-     const newerEdge= await newEdge.save(); 
-    return await this.edgeModel.findById(newerEdge._id).populate('source').populate('target'); 
-     
+    const newerEdge = await newEdge.save();
+    return await this.edgeModel.findById(newerEdge._id).populate('source').populate('target');
+
   }
   async creates(edge: Edge): Promise<any> {
-    
+
     const newEdges = await this.edgeModel.insertMany(edge)
-    console.log('edge',newEdges)
+    console.log('edge', newEdges)
+    return newEdges
   }
 
-   async filterEdge(edgeid: string): Promise<Edge> {
-    
-     return await this.edgeModel.find({edgeid}); 
-   }
+  async filterEdge(edgeid: string): Promise<Edge> {
+
+    return await this.edgeModel.find({ edgeid });
+  }
 
   async delete(id: string): Promise<Edge> {
     return await this.edgeModel.findByIdAndRemove(id);
   }
 
   async update(id: string, edge: Edge): Promise<Edge> {
-    return await this.edgeModel.findByIdAndUpdate(id, edge, { new: true }).populate('source').populate('target'); 
-     
+    return await this.edgeModel.findByIdAndUpdate(id, edge, { new: true }).populate('source').populate('target');
+
   }
 }
