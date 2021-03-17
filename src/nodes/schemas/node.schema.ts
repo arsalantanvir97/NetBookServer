@@ -5,7 +5,10 @@ export const NodeSchema = new mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:'Item'
   },
-  id:String,
+  id:{
+    type:String,
+  unique:true,dropDups: true}
+  ,
   type:String,
   tags:Array,
   attributes:Array,

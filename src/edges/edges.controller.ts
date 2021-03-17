@@ -29,6 +29,11 @@ import {
     create(@Body() createEdgeDto: CreateEdgeDto): Promise<Edge> {
       return this.edgesService.create(createEdgeDto)
     }
+    
+    @Post('/many')
+    creates(@Body() createEdgeDto: CreateEdgeDto): Promise<Edge> {
+      return this.edgesService.creates(createEdgeDto)
+    }
      @Post('/get')
      filterEdge(@Body() CreateEdgeDto: CreateEdgeDto): Promise<Edge> {
        return this.edgesService.filterEdge(CreateEdgeDto.edgeid);

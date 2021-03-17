@@ -3,6 +3,7 @@ import { Node } from './interfaces/node.interface'
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Edge } from 'src/edges/interfaces/edge.interface';
+import { Console } from 'console';
 
 @Injectable()
 export class NodesService {
@@ -28,7 +29,12 @@ export class NodesService {
      return await newNode.save(); 
     }
   }
-
+  async creates(node: Node): Promise<any> {
+   
+    const nodes=await this.nodeModel.insertMany(node)
+    console.log('nodes',nodes)
+   
+  }
    async filterNode(nodeid: string): Promise<any> {
     let nodes =  await this.nodeModel.find({nodeid}); 
     let links =  await this.edgeModel.find({edgeid: nodeid}).populate('source').populate('target'); 
