@@ -1,18 +1,19 @@
 import * as mongoose from 'mongoose';
 
 export const NodeSchema = new mongoose.Schema({
-  nodeid:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:'Item'
+  nodeid: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Item'
   },
-  id:{
-    type:String,
-  unique:true,dropDups: true}
+  id: {
+    type: String,
+    dropDups: true
+  }
   ,
-  type:String,
-  tags:Array,
-  attributes:Array,
-  color:String,
+  type: String,
+  tags: Array,
+  attributes: Array,
+  color: String,
 }, {
   timestamps: true,
 });
