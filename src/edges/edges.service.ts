@@ -26,7 +26,8 @@ export class EdgesService {
 
     const newEdges = await this.edgeModel.insertMany(edge)
     console.log('edge', newEdges)
-    return newEdges
+    return await this.edgeModel.find().populate('source').populate('target');
+
   }
 
   async filterEdge(edgeid: string): Promise<Edge> {
