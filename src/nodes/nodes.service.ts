@@ -48,7 +48,7 @@ export class NodesService {
     }
     finally {
       console.log('noddde', nodes)
-      return await this.nodeModel
+      return await this.nodeModel.find();
 
     }
 
