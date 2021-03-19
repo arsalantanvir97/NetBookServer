@@ -29,11 +29,28 @@ export class NodesService {
       return await newNode.save();
     }
   }
-  async creates(node: Node): Promise<any> {
+  async creates(node: any): Promise<any> {
+    console.log('node', node, node[0].nodeid)
     let nodes;
+    let noddes;
+
+    noddes = await this.nodeModel.find({ nodeid: node[0].nodeid })
+    console.log('noddes', noddes)
+    noddes = node.filter(nd => {
+      let flag = true
+      for (let nod of noddes) {
+        if (nd.id === nod.id) {
+
+          flag = false
+        }
+
+      }
+      return flag
+    })
+    console.log('noded', noddes)
     try {
       // console.log("body", node)
-      nodes = await this.nodeModel.insertMany(node, { ordered: false })
+      nodes = await this.nodeModel.insertMany(noddes, { ordered: false })
       // console.log('nodes', nodes)
 
     }
