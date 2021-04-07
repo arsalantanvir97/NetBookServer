@@ -21,11 +21,16 @@ export class NodesService {
   }
 
   async create(node: Node, id: string): Promise<any> {
-    const checknode = await this.nodeModel.findOne({ id })
+    console.log('node', node)
+    // let checknode = await this.nodeModel.find({ nodeid: node.nodeid })
+    // console.log('checknode', checknode)
+    const checknode = await this.nodeModel.findOne({ id, nodeid: node.nodeid })
+    console.log('checkednode', checknode)
     if (checknode) {
       return { message: 'Node Already exists' }
     } else {
       const newNode = new this.nodeModel(node);
+      console.log('newNode', newNode)
       return await newNode.save();
     }
   }
