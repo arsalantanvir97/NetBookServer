@@ -7,6 +7,7 @@ export declare class EdgesController {
     findAll(): Promise<Edge[]>;
     findOne(id: any): Promise<Edge>;
     create(createEdgeDto: CreateEdgeDto): Promise<Edge>;
+    creates(createEdgeDto: CreateEdgeDto): Promise<Edge>;
     filterEdge(CreateEdgeDto: CreateEdgeDto): Promise<Edge>;
     delete(id: any): Promise<Edge>;
     update(CreateEdgeDto: CreateEdgeDto, id: any): Promise<Edge>;

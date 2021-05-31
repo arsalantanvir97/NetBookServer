@@ -28,6 +28,9 @@ let EdgesController = class EdgesController {
     create(createEdgeDto) {
         return this.edgesService.create(createEdgeDto);
     }
+    creates(createEdgeDto) {
+        return this.edgesService.creates(createEdgeDto);
+    }
     filterEdge(CreateEdgeDto) {
         return this.edgesService.filterEdge(CreateEdgeDto.edgeid);
     }
@@ -58,6 +61,13 @@ __decorate([
     __metadata("design:paramtypes", [create_edge_dto_1.CreateEdgeDto]),
     __metadata("design:returntype", Promise)
 ], EdgesController.prototype, "create", null);
+__decorate([
+    common_1.Post('/many'),
+    __param(0, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_edge_dto_1.CreateEdgeDto]),
+    __metadata("design:returntype", Promise)
+], EdgesController.prototype, "creates", null);
 __decorate([
     common_1.Post('/get'),
     __param(0, common_1.Body()),

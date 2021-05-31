@@ -41,13 +41,49 @@ let NodesService = class NodesService {
     }
     create(node, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const checknode = yield this.nodeModel.findOne({ id });
+            console.log('node', node);
+            const checknode = yield this.nodeModel.findOne({ id, nodeid: node.nodeid });
+            console.log('checkednode', checknode);
             if (checknode) {
                 return { message: 'Node Already exists' };
             }
             else {
                 const newNode = new this.nodeModel(node);
+                console.log('newNode', newNode);
                 return yield newNode.save();
+            }
+        });
+    }
+    creates(node) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log('node', node, node[0].nodeid);
+            let nodes;
+            let noddes;
+            noddes = yield this.nodeModel.find({ nodeid: node[0].nodeid });
+            console.log('noddes', noddes);
+            noddes = node.filter(nd => {
+                let flag = true;
+                for (let nod of noddes) {
+                    if (nd.id === nod.id) {
+                        flag = false;
+                    }
+                }
+                return flag;
+            });
+            console.log('noded', noddes);
+            try {
+                nodes = yield this.nodeModel.insertMany(noddes, { ordered: false });
+            }
+            catch (error) {
+                if (error.message.indexOf("11000") != -1) {
+                    console.log("dup error");
+                    console.log('nodee', nodes);
+                    return nodes;
+                }
+            }
+            finally {
+                console.log('noddde', nodes);
+                return nodes;
             }
         });
     }

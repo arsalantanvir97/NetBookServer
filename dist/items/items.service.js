@@ -58,6 +58,19 @@ let ItemsService = class ItemsService {
             return yield this.itemModel.findByIdAndRemove(id);
         });
     }
+    updates(packageid, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield this.itemModel.findOne({ _id: id });
+            console.log('users', user);
+            if (user) {
+                user.packageid = packageid;
+            }
+            yield user.save();
+            const newwuser = yield this.itemModel.findById(user._id).populate('packageid');
+            console.log('pops', newwuser);
+            return yield newwuser.save();
+        });
+    }
     update(id, item) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.itemModel.findByIdAndUpdate(id, item, { new: true });

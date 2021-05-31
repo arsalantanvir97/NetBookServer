@@ -28,6 +28,9 @@ let NodesController = class NodesController {
     create(createNodeDto) {
         return this.nodesService.create(createNodeDto, createNodeDto.id);
     }
+    creates(createNodeDto) {
+        return this.nodesService.creates(createNodeDto);
+    }
     filterNode(createNodeDto) {
         return this.nodesService.filterNode(createNodeDto.nodeid);
     }
@@ -58,6 +61,13 @@ __decorate([
     __metadata("design:paramtypes", [create_node_dto_1.CreateNodeDto]),
     __metadata("design:returntype", Promise)
 ], NodesController.prototype, "create", null);
+__decorate([
+    common_1.Post('/many'),
+    __param(0, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_node_dto_1.CreateNodeDto]),
+    __metadata("design:returntype", Promise)
+], NodesController.prototype, "creates", null);
 __decorate([
     common_1.Post('/get'),
     __param(0, common_1.Body()),

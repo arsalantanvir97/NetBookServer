@@ -35,6 +35,10 @@ let ItemsController = class ItemsController {
     update(updateItemDto, id) {
         return this.itemsService.update(id, updateItemDto);
     }
+    updates(updateItemDto, id) {
+        return this.itemsService.updates(updateItemDto.packageid, id);
+        console.log("updadte user packageid");
+    }
     queries(createItemDto, id, res) {
         return this.itemsService.queries(id, createItemDto.query, res);
     }
@@ -73,6 +77,13 @@ __decorate([
     __metadata("design:paramtypes", [create_item_dto_1.CreateItemDto, Object]),
     __metadata("design:returntype", Promise)
 ], ItemsController.prototype, "update", null);
+__decorate([
+    common_1.Put('up/:id'),
+    __param(0, common_1.Body()), __param(1, common_1.Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_item_dto_1.CreateItemDto, Object]),
+    __metadata("design:returntype", Promise)
+], ItemsController.prototype, "updates", null);
 __decorate([
     common_1.Post(':id'),
     __param(0, common_1.Body()), __param(1, common_1.Param('id')), __param(2, common_1.Res()),

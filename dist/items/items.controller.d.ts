@@ -10,5 +10,6 @@ export declare class ItemsController {
     create(createItemDto: CreateItemDto): Promise<Item>;
     delete(id: any): Promise<Item>;
     update(updateItemDto: CreateItemDto, id: any): Promise<Item>;
+    updates(updateItemDto: CreateItemDto, id: any): Promise<Item>;
     queries(createItemDto: CreateItemDto, id: any, res: Response): Promise<void>;
 }

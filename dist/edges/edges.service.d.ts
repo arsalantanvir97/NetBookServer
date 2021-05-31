@@ -6,6 +6,7 @@ export declare class EdgesService {
     findAll(): Promise<Edge[]>;
     findOne(id: string): Promise<Edge>;
     create(edge: Edge): Promise<Edge>;
+    creates(edge: Edge): Promise<any>;
     filterEdge(edgeid: string): Promise<Edge>;
     delete(id: string): Promise<Edge>;
     update(id: string, edge: Edge): Promise<Edge>;

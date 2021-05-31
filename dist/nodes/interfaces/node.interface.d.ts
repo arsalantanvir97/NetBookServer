@@ -4,4 +4,5 @@ export interface Node {
     type: string;
     tags: string[];
     attributes: string[];
+    color: string;
 }

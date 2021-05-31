@@ -7,6 +7,7 @@ export declare class NodesController {
     findAll(): Promise<Node[]>;
     findOne(id: any): Promise<Node>;
     create(createNodeDto: CreateNodeDto): Promise<Node>;
+    creates(createNodeDto: CreateNodeDto): Promise<Node>;
     filterNode(createNodeDto: CreateNodeDto): Promise<Node>;
     delete(id: any): Promise<Node>;
     update(updateNodeDto: CreateNodeDto, id: any): Promise<Node>;

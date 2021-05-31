@@ -8,6 +8,7 @@ export declare class NodesService {
     findAll(): Promise<Node[]>;
     findOne(id: string): Promise<Node>;
     create(node: Node, id: string): Promise<any>;
+    creates(node: any): Promise<any>;
     filterNode(nodeid: string): Promise<any>;
     delete(id: string): Promise<Node>;
     update(id: string, node: Node): Promise<Node>;

@@ -45,6 +45,13 @@ let EdgesService = class EdgesService {
             return yield this.edgeModel.findById(newerEdge._id).populate('source').populate('target');
         });
     }
+    creates(edge) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const newEdges = yield this.edgeModel.insertMany(edge);
+            console.log('edge', newEdges, newEdges[0].edgeid, this.edgeModel.edgeid);
+            return yield this.edgeModel.find({ edgeid: newEdges[0].edgeid }).populate('source').populate('target');
+        });
+    }
     filterEdge(edgeid) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.edgeModel.find({ edgeid });

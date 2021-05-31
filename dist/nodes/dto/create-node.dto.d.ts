@@ -4,4 +4,5 @@ export declare class CreateNodeDto {
     type: string;
     tags: string[];
     attributes: string[];
+    color: string;
 }
