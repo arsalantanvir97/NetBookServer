@@ -1,3 +1,3 @@
 export default {
-  mongoURI: 'mongodb+srv://arsalan123:arsalan123@contactkeepermern.xe8pl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+  mongoURI: 'mongodb+srv://n4beel:aQ3HZ9EzoB9HXBv3@sandbox.mwosc.mongodb.net/netbook?retryWrites=true&w=majority',
 };
