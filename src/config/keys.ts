@@ -1,3 +1,4 @@
 export default {
-  mongoURI: 'mongodb+srv://n4beel:aQ3HZ9EzoB9HXBv3@sandbox.mwosc.mongodb.net/netbook?retryWrites=true&w=majority',
+  mongoURI:
+    'mongodb+srv://arslan:arsalan123@ecommerce123.rzxz2.mongodb.net/?retryWrites=true&w=majority&appName=Ecommerce123',
 };
